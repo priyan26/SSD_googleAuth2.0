@@ -1,3 +1,4 @@
+const path = require('path')
 const express = require('express')
 const mongoose = require('mongoose')
 const dotenv = require('dotenv')
@@ -18,6 +19,9 @@ if(process.env.NODE_ENV==='development'){
 // Handlebars
 app.engine('.hbs',exphbs({defaultLaout:'main',extname:'.hbs'}));
 app.set('view engine','.hbs');
+
+//Static folder
+app.use(express.static(path.join(__dirname, 'public')))
 
 //Routes
 app.use('/', require('./routes/index'))

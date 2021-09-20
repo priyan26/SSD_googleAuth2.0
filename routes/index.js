@@ -4,7 +4,9 @@ const router=express.Router()
 //@desc Login/Landing Page
 //@route GET/
 router.get('/',(req,res)=>{
-    res.render('login')
+    res.render('login', {
+        layout: 'login',
+    })
 })
 
 //@desc Login/Landing Page

@@ -1,6 +1,8 @@
 const express = require('express')
 const mongoose = require('mongoose')
 const dotenv = require('dotenv')
+const morgan= require('morgan')
+const exphbs= require('express-handlebars')
 
 // Load the Globals
 dotenv.config({path: './Globals/.env'})
@@ -8,6 +10,17 @@ dotenv.config({path: './Globals/.env'})
 
 const app = express()
 
+// Logging
+if(process.env.NODE_ENV==='development'){
+    app.use(morgan('dev'))
+}
+
+// Handlebars
+app.engine('.hbs',exphbs({defaultLaout:'main',extname:'.hbs'}));
+app.set('view engine','.hbs');
+
+//Routes
+app.use('/', require('./routes/index'))
 const PORT = process.env.PORT || 8000
 
 

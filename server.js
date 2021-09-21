@@ -4,7 +4,7 @@ const mongoose = require('mongoose')
 const dotenv = require('dotenv')
 const morgan = require('morgan')
 const session = require('express-session')
-const passport = req('passport')
+const passport = require('passport')
 const exphbs = require('express-handlebars')
 
 
@@ -41,6 +41,8 @@ app.use(express.static(path.join(__dirname, 'public')))
 
 //Routes
 app.use('/', require('./routes/index'))
+app.use('/auth', require('./routes/auth'))
+
 const PORT = process.env.PORT || 8000
 
 

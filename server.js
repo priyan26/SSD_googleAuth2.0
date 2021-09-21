@@ -6,7 +6,7 @@ const morgan = require('morgan')
 const session = require('express-session')
 const passport = require('passport')
 const exphbs = require('express-handlebars')
-
+const MongoStore = require('connect-mongo')
 
 // Load the Globals
 dotenv.config({path: './Globals/.env'})
@@ -25,7 +25,10 @@ if (process.env.NODE_ENV === 'development') {
 app.use(session({
     secret: process.env.EXPRESS_SESSION_SECRET,
     resave: false,
-    saveUninitialized: false
+    saveUninitialized: false,
+    store: MongoStore.create({
+        mongoUrl: process.env.MONGO_DB_URL
+    })
 }))
 
 // Handlebars

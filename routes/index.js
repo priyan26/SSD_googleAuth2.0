@@ -13,6 +13,8 @@ router.get('/', ensureGuest, (req,res)=>{
 //@desc Login/Landing Page
 //@route GET/
 router.get('/dashboard', ensureAuth, (req,res)=>{
-    res.render('dashboard')
+    res.render('dashboard',{
+        name: req.user.displayName,
+    })
 })
 module.exports=router

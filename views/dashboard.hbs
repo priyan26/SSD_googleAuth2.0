@@ -14,7 +14,7 @@
         <tbody>
             {{#each poems}}
             <tr>
-                <td><a href="/poems/{{_id}}"></a>{{title}}</td>
+                <td><a href="/poems/{{_id}}">{{title}}</a></td>
                 <td>{{formatDate createdAt 'MMMM Do YYYY, h:mm:ss a'}}</td>
                 <td><span class="dash-status">{{stat}}</span></td>
                 <td></td>

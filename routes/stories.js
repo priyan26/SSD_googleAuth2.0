@@ -39,5 +39,23 @@ router.get('/', ensureAuth, async (req,res)=>{
         res.render('error/500')
     }
 })
+//@desc Show edit page
+//@route GET /stories/edit/:id
+router.get('/edit/:id', ensureAuth, async (req,res)=>{
+   const poem=await Poem.findOne({
+       _id:req.params.id,
+   }).lean()
 
+   if(!poem){
+       return res.render('error/404')
+   }
+   if(poem.user!=req.user.id){
+       res.redirect('/stories')
+   }else{
+       res.render('stories/edit',{
+           poem,
+       })
+   }
+
+})
 module.exports=router

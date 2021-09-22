@@ -5,7 +5,7 @@ const PoemSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    poemBody:{
+    body:{
         type: String,
         required: true
     },

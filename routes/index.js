@@ -14,14 +14,16 @@ router.get('/', ensureGuest, (req,res)=>{
 
 //@desc Login/Landing Page
 //@route GET/
-router.get('/dashboard', ensureAuth, (req,res)=>{
+router.get('/dashboard', ensureAuth, async (req,res)=>{
     try{
-        const poems=await Poem.find({ author:req.author.googleId}).lean()
+        const poems=await Poem.find({ user:req.user.id}).lean()
         res.render('dashboard',{
             name: req.user.displayName,
+            poems,
         })
     }catch(err){
         console.error(err)
+        res.render('error/500')
 
     }
    

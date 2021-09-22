@@ -17,4 +17,16 @@ module.exports = {
     stripTags: function (input) {
         return input.replace(/<(?:.|\n)*?>/gm, '')
     },
+    editIcon: function(poemUser,loggedUser,poemId,floating=true){
+        if(poemUser._id.toString()==loggedUser._id.toString()){
+            if(floating){
+                return `<a href="/stories/edit/ ${poemId}" class="btn-floating 
+                halfway-fab blue"><i class="fas fa-edit fa-small"></i></a>`
+            }else{
+                return `<a href="/stories/edit/${poemId}><i class="fas fa-edit"></i></a>`
+            }
+        }else{
+            return ''
+        }
+    }
 }

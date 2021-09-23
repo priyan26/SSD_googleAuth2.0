@@ -42,40 +42,62 @@ router.get('/', ensureAuth, async (req,res)=>{
 //@desc Show edit page
 //@route GET /stories/edit/:id
 router.get('/edit/:id', ensureAuth, async (req,res)=>{
-   const poem=await Poem.findOne({
-       _id:req.params.id,
-   }).lean()
+    try {
+        const poem=await Poem.findOne({
+            _id:req.params.id,
+        }).lean()
 
-   if(!poem){
-       return res.render('error/404')
-   }
-   if(poem.user!=req.user.id){
-       res.redirect('/stories')
-   }else{
-       res.render('stories/edit',{
-           poem,
-       })
-   }
+        if(!poem){
+            return res.render('error/404')
+        }
+        if(poem.user!=req.user.id){
+            res.redirect('/stories')
+        }else{
+            res.render('stories/edit',{
+                poem,
+            })
+        }
+    }catch (e) {
+        console.error(e)
+        return res.render('error/500')
+    }
 })
 
 //@desc Update story
 //@route PUT /stories/:id
 router.put('/:id', ensureAuth, async (req,res)=>{
-    let story = await Poem.findById(req.params.id).lean()
+    try {
+        let story = await Poem.findById(req.params.id).lean()
 
-    if (!story){
-        return res.render('error/404')
+        if (!story){
+            return res.render('error/404')
+        }
+
+        if(story.user!=req.user.id){
+            res.redirect('/stories')
+        }else{
+            story = await Poem.findOneAndUpdate({_id: req.params.id}, req.body, {
+                new: true,
+                runValidators: true
+            })
+
+            res.redirect('/dashboard')
+        }
+    }catch (e) {
+        console.error(e)
+        return res.render('error/500')
     }
+})
 
-    if(story.user!=req.user.id){
-        res.redirect('/stories')
-    }else{
-        story = await Poem.findOneAndUpdate({_id: req.params.id}, req.body, {
-            new: true,
-            runValidators: true
-        })
-
+//@desc Delete story
+//@route DELETE /stories/:id
+router.delete('/:id', ensureAuth, async (req,res)=>{
+    try {
+        await Poem.remove({_id: req.params.id})
         res.redirect('/dashboard')
+    }catch (e) {
+        console.error(e)
+        return res.render('error/500')
     }
 })
 

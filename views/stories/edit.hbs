@@ -1,6 +1,7 @@
 <h3>Edit Story</h3>
 <div class="row">
-    <form action="/stories" method="post" class="col s12">
+    <form action="/stories/{{poem._id}}" method="post" class="col s12">
+        <input type="hidden" name="_method" value="PUT">
         <div class="row">
             <div class="input-field">
                 <input type="text" id="title" name="title" value="{{poem.title}}">

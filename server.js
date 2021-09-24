@@ -6,7 +6,8 @@ const morgan = require('morgan')
 const session = require('express-session')
 const passport = require('passport')
 const exphbs = require('express-handlebars')
-
+const MongoStore = require('connect-mongo')
+const methodOverride = require('method-override')
 
 // Load the Globals
 dotenv.config({path: './Globals/.env'})
@@ -15,6 +16,20 @@ dotenv.config({path: './Globals/.env'})
 require('./auth/passport')(passport)
 
 const app = express()
+
+//Body parser
+app.use(express.urlencoded({extended: false}))
+app.use(express.json())
+
+//Method override
+app.use(methodOverride(function (req, res) {
+    if (req.body && typeof req.body === 'object' && '_method' in req.body) {
+        // look in urlencoded POST bodies and delete it
+        let method = req.body._method
+        delete req.body._method
+        return method
+    }
+}))
 
 // Logging
 if (process.env.NODE_ENV === 'development') {
@@ -25,24 +40,47 @@ if (process.env.NODE_ENV === 'development') {
 app.use(session({
     secret: process.env.EXPRESS_SESSION_SECRET,
     resave: false,
-    saveUninitialized: false
+    saveUninitialized: false,
+    store: MongoStore.create({
+        mongoUrl: process.env.MONGO_DB_URL
+    })
 }))
 
+//Handlebars Helpers
+const {formatDate, stripTags, truncate, editIcon, select} = require('./helpers/hbs')
+
 // Handlebars
-app.engine('.hbs', exphbs({defaultLayout: 'main', extname: '.hbs'}));
+app.engine('.hbs',
+    exphbs({
+        helpers:{
+            formatDate,
+            stripTags,
+            truncate,
+            editIcon,
+            select,
+        },
+        defaultLayout: 'main',
+        extname: '.hbs'
+    })
+);
 app.set('view engine', '.hbs');
 
 //Set Passport Middleware
 app.use(passport.initialize())
 app.use(passport.session())
 
+//set Global Varieble
+app.use(function(req,res,next){
+    res.locals.user=req.user ||null
+    next()
+})
 //Static folder
 app.use(express.static(path.join(__dirname, 'public')))
 
 //Routes
 app.use('/', require('./routes/index'))
 app.use('/auth', require('./routes/auth'))
-app.use('/file', require('./routes/fileUpload'))
+app.use('/stories', require('./routes/stories'))
 
 const PORT = process.env.PORT || 8000
 

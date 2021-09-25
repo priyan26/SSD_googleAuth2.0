@@ -39,3 +39,29 @@ p{
     -ms-transition: 0.3s;
     -o-transition: 0.3s;
 }
+
+input[type=file]::file-selector-button {
+    text-decoration: none;
+    color: #fff;
+    background-color: #3c8ac1;
+    text-align: center;
+    letter-spacing: .5px;
+    -webkit-transition: background-color .2s ease-out;
+    transition: background-color .2s ease-out;
+    cursor: pointer;
+    border: none;
+    border-radius: 2px;
+    display: inline-block;
+    height: 36px;
+    line-height: 36px;
+    padding: 0 16px;
+    text-transform: uppercase;
+    vertical-align: middle;
+    -webkit-tap-highlight-color: transparent;
+  }
+  
+  input[type=file]::file-selector-button:hover {
+    background-color: #609cc6;
+  }
+
+  

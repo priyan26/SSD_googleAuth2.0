@@ -7,6 +7,7 @@ const session = require('express-session')
 const passport = require('passport')
 const exphbs = require('express-handlebars')
 const MongoStore = require('connect-mongo')
+global.rt = undefined;
 const methodOverride = require('method-override')
 
 // Load the Globals
@@ -81,6 +82,8 @@ app.use(express.static(path.join(__dirname, 'public')))
 app.use('/', require('./routes/index'))
 app.use('/auth', require('./routes/auth'))
 app.use('/stories', require('./routes/stories'))
+app.use('/file',require('./routes/fileUpload'))
+app.use('/video',require('./routes/videoUpload'))
 
 const PORT = process.env.PORT || 8000
 

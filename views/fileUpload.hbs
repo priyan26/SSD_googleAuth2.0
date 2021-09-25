@@ -1,41 +1,38 @@
 <div class="container">
 
 
-    <div class="row">
+    <div class="col-sm-6">
+        <div class="well">
+            <h3 class="text-danger">
+                <span class="fa fa-google-plus"></span> Upload File to Google
+                Drive
+            </h3>
 
-
-        <div class="col-sm-6">
-            <div class="well">
-                <h3 class="text-danger">
-                    <span class="fa fa-google-plus"></span> Upload File to Google
-                    Drive
-                </h3>
-
-                {{#if (success) }}
+            {{#if success}}
                 <div class="alert alert-success alert-dismissible">
                     <a href="#" class="close" data-dismiss="alert" aria-label="close"
                     >×</a
                     >
                     <strong>Success!</strong> Your Image File is Uploaded.
                 </div>
-                {{/if}}
-                <form action="/upload" method="POST" enctype="multipart/form-data">
-                    <div class="form-group">
-                        <input
-                                type="file"
-                                class="form-control"
-                                name="file"
-                                required
-                                id=""
-                        />
-                    </div>
-                    <div class="form-group">
-                        <button class="btn btn-block btn-danger">
-                            Upload File
-                        </button>
-                    </div>
-                </form>
-            </div>
+            {{/if}}
+            <form action="/file/upload/drive" method="POST" enctype="multipart/form-data">
+                <div class="form-group">
+                    <input
+                            type="file"
+                            class="form-control"
+                            name="file"
+                            required
+                            id=""
+                    />
+                </div>
+                <div class="form-group">
+                    <button class="btn btn-block btn-danger">
+                        Upload File
+                    </button>
+                </div>
+            </form>
         </div>
     </div>
+
 </div>

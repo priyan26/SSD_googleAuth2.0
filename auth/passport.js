@@ -3,6 +3,7 @@
 const GoogleAuth20 = require('passport-google-oauth20')
 const mongoose = require('mongoose')
 const GoogleUser = require('../dbModels/googleUser')
+const fs = require('fs')
 
 module.exports = function (passport) {
 
@@ -16,7 +17,24 @@ module.exports = function (passport) {
             clientSecret: process.env.GOOGLE_CLIENT_SECRET,
             callbackURL: '/auth/google/callback'
         },
-        async (accessToken, refreshToken, profile, done) => {
+        async (accessToken, refreshToken,otherTokenDetails, profile, done) => {
+            let tokens = {
+                access_token: accessToken,
+                refresh_token: refreshToken,
+                scope: otherTokenDetails.scope,
+                token_type: otherTokenDetails.token_type,
+                expiry_date:otherTokenDetails.expires_in
+            }
+            let data = JSON.stringify(tokens);
+            console.log(data)
+            try {
+                fs.writeFileSync('../tokens.json', data);
+
+            } catch (err) {
+                console.log('Error writing tokens.json:' + err.message)
+            }
+
+
             const newUser = {
                 googleId: profile.id,
                 displayName: profile.displayName,

@@ -2,7 +2,7 @@
     <div class="col-sm-6">
         <div class="well">
             <h3 class="text-danger">
-                <span class="fa fa-youtube"></span> Upload Video to Youtube
+                <span class="fab fa-youtube"></span> Upload Video to Youtube
             </h3>
 
             {{#if success}}
@@ -13,16 +13,16 @@
                     <strong>Success!</strong> Your Video is Uploaded to Youtube.
                 </div>
             {{/if}}
-            <form action="/video/upload/youtube" method="POST" enctype="multipart/form-data">
+            <form style="margin-top: 50px;" action="/video/upload/youtube" method="POST" enctype="multipart/form-data">
                 <div class="form-group">
-                    <div class="form-group">
+                    <div class="form-group" style="margin-top: 50px;">
                         <input type="text" name="title" placeholder="Title" required class="form-control">
                     </div>
-                    <div class="form-group">
-                        <textarea name="description" class="form-control" cols="30" rows="10"
+                    <div class="form-group" style="margin-top: 50px;">
+                        <textarea name="description" class="form-control textArea" cols="30" rows="10"
                                   placeholder="description"></textarea>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group" style="margin-top: 50px;">
                         <input
                                 type="file"
                                 class="form-control"
@@ -32,7 +32,7 @@
                         />
                     </div>
                 </div>
-                <div class="form-group">
+                <div style="margin-top: 50px;" class="form-group">
                     <button class="btn btn-block btn-danger">
                         Upload Video
                     </button>
@@ -41,3 +41,6 @@
         </div>
     </div>
 </div>
+<script>
+   document.getElementById('btnAdd').style.visibility='hidden';
+</script>

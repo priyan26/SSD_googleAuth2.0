@@ -19,3 +19,23 @@ p{
 .img-small{
     width:180px ;
 }
+.textArea{
+    outline: none;
+    border-radius: 4px;
+    height: 175px;
+}
+.textArea:focus {
+    transition: 0.3s;
+    outline: none;
+    border: 2px solid #26a69a;
+    box-shadow: 1px 10px 17px 0px #26a69a47;
+    border-radius: 4px;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    -ms-border-radius: 4px;
+    -o-border-radius: 4px;
+    -webkit-transition: 0.3s;
+    -moz-transition: 0.3s;
+    -ms-transition: 0.3s;
+    -o-transition: 0.3s;
+}

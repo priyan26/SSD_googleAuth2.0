@@ -1,10 +1,8 @@
-<div class="container">
-
-
+<div class="container" >
     <div class="col-sm-6">
         <div class="well">
             <h3 class="text-danger">
-                <span class="fa fa-google-plus"></span> Upload File to Google
+                <span class="fab fa-google-drive"></span> Upload File to Google
                 Drive
             </h3>
 
@@ -16,7 +14,7 @@
                     <strong>Success!</strong> Your Image File is Uploaded!.
                 </div>
             {{/if}}
-            <form action="/file/upload/drive" method="POST" enctype="multipart/form-data">
+            <form style="margin-top: 50px;" action="/file/upload/drive" method="POST" enctype="multipart/form-data">
                 <div class="form-group">
                     <input
                             type="file"
@@ -26,7 +24,7 @@
                             id=""
                     />
                 </div>
-                <div class="form-group">
+                <div style="margin-top: 50px;" class="form-group">
                     <button class="btn btn-block btn-danger">
                         Upload File
                     </button>
@@ -36,3 +34,6 @@
     </div>
 
 </div>
+<script>
+   document.getElementById('btnAdd').style.visibility='hidden';
+</script>

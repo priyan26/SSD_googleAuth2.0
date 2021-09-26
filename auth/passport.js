@@ -1,7 +1,6 @@
 
 // The Google authentication strategy authenticates users using a Google account and OAuth 2.0 tokens.
 const GoogleAuth20 = require('passport-google-oauth20')
-const mongoose = require('mongoose')
 const GoogleUser = require('../dbModels/googleUser')
 const fs = require('fs')
 

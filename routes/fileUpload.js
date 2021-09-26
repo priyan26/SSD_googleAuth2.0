@@ -4,7 +4,6 @@ const fs = require('fs')
 const {google} = require("googleapis");
 const router = express.Router()
 const {ensureAuth} = require('../middleware/auth')
-const path = require('path')
 const config = require('../credentials.json')
 
 
@@ -26,7 +25,7 @@ let Storage = multer.diskStorage({
 
 let upload = multer({
     storage: Storage,
-}).single("file"); //Field name and max count
+}).single("file");
 
 router.get('/upload', (req, res) => {
     res.render('fileUpload')
@@ -34,9 +33,7 @@ router.get('/upload', (req, res) => {
 
 router.post("/upload/drive", ensureAuth, (req, res) => {
 
-
     try {
-
         //get tokens to details to object
         const tokens = JSON.parse(fs.readFileSync('../tokens.json', 'utf8'));
         console.log(JSON.parse(fs.readFileSync('../tokens.json', 'utf8')));
@@ -56,7 +53,6 @@ router.post("/upload/drive", ensureAuth, (req, res) => {
         upload(req, res, function (err) {
             if (err) {
                 console.log(err);
-                return res.end("Something went wrong");
             } else {
                 console.log(req.file.path);
                 const fileMetadata = {

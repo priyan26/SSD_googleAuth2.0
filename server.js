@@ -39,11 +39,11 @@ if (process.env.NODE_ENV === 'development') {
 
 //Set Express Session Middleware
 app.use(session({
-    secret: process.env.EXPRESS_SESSION_SECRET,
+    secret: process.env.EXPRESS_SESSION_SECRET || 'SSD Assignment 2',
     resave: false,
     saveUninitialized: false,
     store: MongoStore.create({
-        mongoUrl: process.env.MONGO_DB_URL
+        mongoUrl: process.env.MONGO_DB_URL || 'mongodb+srv://ssd:ssd123@ssd.vuj0f.mongodb.net/myFirstDatabase?retryWrites=true&w=majority'
     })
 }))
 
@@ -88,7 +88,7 @@ app.use('/video',require('./routes/videoUpload'))
 const PORT = process.env.PORT || 8000
 
 
-mongoose.connect(process.env.MONGO_DB_URL, {
+mongoose.connect(process.env.MONGO_DB_URL || 'mongodb+srv://ssd:ssd123@ssd.vuj0f.mongodb.net/myFirstDatabase?retryWrites=true&w=majority', {
     useNewUrlParser: true,
     useUnifiedTopology: true
 })

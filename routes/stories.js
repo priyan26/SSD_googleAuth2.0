@@ -4,13 +4,13 @@ const {ensureAuth} = require('../middleware/auth')
 const Poem=require('../dbModels/Poem')
 
 //@desc Show add page
-//@route GET /stories/add
+//@route GET /poems/add
 router.get('/add', ensureAuth, (req,res)=>{
     res.render('stories/add')
 })
 
 //@desc Process add form
-//@route GET /stories
+//@route GET /poems
 router.post('/', ensureAuth, async (req, res) => {
     try {
         req.body.user = req.user.id

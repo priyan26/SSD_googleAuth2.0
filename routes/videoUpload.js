@@ -85,8 +85,6 @@ router.post("/upload/youtube", ensureAuth, (req, res) => {
                     },
                     (err, data) => {
                         if (err) throw err
-                        console.log(data)
-                        console.log("Done.");
                         fs.unlinkSync(req.file.path);
                         res.render('videoUpload', {success: true})
                     });

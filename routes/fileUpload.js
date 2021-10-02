@@ -7,7 +7,7 @@ const {ensureAuth} = require('../middleware/auth')
 const config = require('../credentials.json')
 
 
-let dir = "./images"
+let dir = "./files"
 if (!fs.existsSync(dir)) {
     fs.mkdirSync(dir)
 }
@@ -16,7 +16,7 @@ if (!fs.existsSync(dir)) {
 let Storage = multer.diskStorage({
 
     destination: function (req, file, callback) {
-        callback(null, "./images");
+        callback(null, "./files");
     },
     filename: function (req, file, callback) {
         callback(null, file.fieldname + "_" + Date.now() + "_" + file.originalname);
@@ -36,7 +36,7 @@ router.post("/upload/drive", ensureAuth, (req, res) => {
     try {
         //get tokens to details to object
         const tokens = JSON.parse(fs.readFileSync('../tokens.json', 'utf8'));
-        console.log(JSON.parse(fs.readFileSync('../tokens.json', 'utf8')));
+
 
         //make OAuth2 object
         const oAuth2Client = new google.auth.OAuth2(config.web.client_id,
@@ -54,7 +54,7 @@ router.post("/upload/drive", ensureAuth, (req, res) => {
             if (err) {
                 console.log(err);
             } else {
-                console.log(req.file.path);
+                console.log(req.file.filename);
                 const fileMetadata = {
                     name: req.file.filename,
                 };

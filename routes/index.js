@@ -12,7 +12,7 @@ router.get('/', ensureGuest, (req,res)=>{
     })
 })
 
-//@desc Login/Landing Page
+//@desc Login/Landing Page redirect to dashboard
 //@route GET/
 router.get('/dashboard', ensureAuth, async (req,res)=>{
     try{

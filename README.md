@@ -24,7 +24,7 @@ Start the server by executing the command
 ```bash
   npm run dev
 ```
-Navigate to http://localhost:8080/ on the browser 
+Navigate to http://localhost:8080/ on the browser or https://poems-ssd-oauth.herokuapp.com/
 ## Authors
 
 - IT18148428 | K.G.G.H. Silva | kgeorgesilva97@gmail.com

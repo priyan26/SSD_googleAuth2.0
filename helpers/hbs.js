@@ -18,6 +18,7 @@ module.exports = {
     stripTags: function (input) {
         return input.replace(/<(?:.|\n)*?>/gm, '')
     },
+    //edit icon button with parameters
     editIcon: function(poemUser,loggedUser,poemId,floating=true){
         if(poemUser._id.toString()==loggedUser._id.toString()){
             if(floating){

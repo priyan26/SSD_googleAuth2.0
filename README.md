@@ -24,18 +24,7 @@ Start the server by executing the command
 ```bash
   npm run dev
 ```
-
-Navigate to http://localhost:8080/ on the browser or https://poems-ssd-oauth.herokuapp.com/
-
-## Documentation for GCP
-
-Setting up OAuth client on Google Cloud Platform
-
-    1.Make a project in the Google cloud console.
-    2.Enable Google Drive and Youtube API through the library.
-    3.Generate the credentials choosing OAuth Client ID
-    4.Download the keys as JSON, rename it as credentials.json and add it to the project directory.
-
+Navigate to http://localhost:8080/ on the browser 
 ## Authors
 
 - IT18148428 | K.G.G.H. Silva | kgeorgesilva97@gmail.com

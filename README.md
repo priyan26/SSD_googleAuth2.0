@@ -26,7 +26,7 @@ Start the server by executing the command
 ```
 Navigate to http://localhost:8080/ on the browser 
 
-## Documentation
+## Documentation for GCP
 
 Setting up OAuth client on Google Cloud Platform
 

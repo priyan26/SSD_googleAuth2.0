@@ -11,20 +11,20 @@ The application provides a platform for poets to share their creativity and show
 - Upload your videos to YouTube
 
   
-## Installation - Command Line Execution
+## Deployment- Command Line Execution
 
 
 
-Install dependencies with npm
-
+Open a terminal in the project folder and install the dependencies
 ```bash
   npm install 
 ```
 
-Run the project
+Start the server by executing the command
 ```bash
   npm run dev
 ```
+Navigate to http://localhost:8080/ on the browser 
 ## Authors
 
 - IT18148428 | K.G.G.H. Silva | kgeorgesilva97@gmail.com

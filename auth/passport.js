@@ -1,11 +1,9 @@
-
 // The Google authentication strategy authenticates users using a Google account and OAuth 2.0 tokens.
 const GoogleAuth20 = require('passport-google-oauth20')
 const GoogleUser = require('../dbModels/googleUser')
 const fs = require('fs')
 
 module.exports = function (passport) {
-
     /*
     When creating a strategy, the client ID and secret are input as options. For this strategy, a verify callback is required,
     as well as a profile containing the authenticated user's Google account and an access token and optional refresh token.

@@ -31,25 +31,20 @@ router.get('/upload', (req, res) => {
     res.render('fileUpload')
 })
 
+//Google Drive Upload
 router.post("/upload/drive", ensureAuth, (req, res) => {
 
     try {
         //get tokens to details to object
         const tokens = JSON.parse(fs.readFileSync('../tokens.json', 'utf8'));
-
-
         //make OAuth2 object
         const oAuth2Client = new google.auth.OAuth2(config.web.client_id,
             config.web.client_secret,
             config.web.redirect_uris)
-
         // set token details to OAuth2 object
         oAuth2Client.setCredentials(tokens)
-
-        //create gmail object to call APIs
+        //create drive object to call APIs
         const drive = google.drive({version: "v3", auth: oAuth2Client});
-
-
         upload(req, res, function (err) {
             if (err) {
                 console.log(err);

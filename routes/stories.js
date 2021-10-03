@@ -40,7 +40,7 @@ router.get('/', ensureAuth, async (req,res)=>{
     }
 })
 
-//@desc Show single story page
+//@desc Show single page of stories and poems
 //@route GET /stories/:id
 router.get('/:id', ensureAuth, async(req,res)=>{
     try {
